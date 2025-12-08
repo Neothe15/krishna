@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Workout Details</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <nav class="navbar navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">← Back to Workouts</a>
+        </div>
+    </nav>
+
+    <div class="container my-5">
+        <div class="row">
+            <div class="col-md-4">
+                <img id="page-img" src="" class="img-fluid rounded mb-3" alt="Workout Image">
+                <ul class="list-group">
+                    <li class="list-group-item"><strong>Level:</strong> <span id="page-level"></span></li>
+                    <li class="list-group-item"><strong>Days Per Week:</strong> <span id="page-days"></span></li>
+                </ul>
+            </div>
+
+            <div class="col-md-8">
+                <h1 id="page-title" class="fw-bold text-primary">Loading...</h1>
+                <p id="page-desc" class="lead text-muted"></p>
+                <hr>
+                <div id="page-content">
+                    </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="db.js"></script> <script>
+        // 1. Get the ID from the URL (e.g., ?id=1)
+        const urlParams = new URLSearchParams(window.location.search);
+        const workoutId = urlParams.get('id');
+
+        // 2. Find the matching workout in our database
+        const workout = workouts.find(w => w.id == workoutId);
+
+        // 3. If found, fill the HTML with data
+        if (workout) {
+            document.getElementById('page-title').innerText = workout.title;
+            document.getElementById('page-desc').innerText = workout.desc;
+            document.getElementById('page-img').src = workout.img;
+            document.getElementById('page-level').innerText = workout.level;
+            document.getElementById('page-days').innerText = workout.days;
+            document.getElementById('page-content').innerHTML = workout.content;
+        } else {
+            document.querySelector('.container').innerHTML = "<h1>Workout not found!</h1>";
+        }
+    </script>
+
+</body>
+</html>
