@@ -3,30 +3,52 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Muscle & Strength Workouts</title>
+    <title>ProFit - Workout Database</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <header>
-        <div class="logo">MUSCLE & STRENGTH</div>
-        <nav>
-            <a href="#">Workouts</a>
-            <a href="#">Diet Plans</a>
-            <a href="#">Store</a>
-        </nav>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="#">PRO<span class="text-primary">FIT</span></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link active" href="#">Workouts</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Nutrition</a></li>
+                    <li class="nav-item"><a class="nav-link btn btn-primary text-white ms-2 px-4" href="#">Join Now</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <header class="bg-primary text-white text-center py-5 mb-4">
+        <div class="container">
+            <h1 class="display-4 fw-black">WORKOUT DATABASE</h1>
+            <p class="lead">The most comprehensive collection of free workout routines.</p>
+        </div>
     </header>
 
-    <div class="hero">
-        <h1>WORKOUT ROUTINES FOR MEN</h1>
-        <p>The largest collection of free workout plans online.</p>
+    <div class="container my-5">
+        <div class="d-flex justify-content-center gap-2 mb-4">
+            <button class="btn btn-outline-dark active" onclick="filterData('all')">All</button>
+            <button class="btn btn-outline-dark" onclick="filterData('muscle')">Muscle Building</button>
+            <button class="btn btn-outline-dark" onclick="filterData('fat_loss')">Fat Loss</button>
+        </div>
+
+        <div id="workout-grid" class="row g-4">
+            </div>
     </div>
 
-    <main>
-        <div id="workout-grid" class="grid-container">
-            </div>
-    </main>
+    <footer class="bg-dark text-white text-center py-3 mt-5">
+        <p class="mb-0">&copy; 2025 ProFit Database. All rights reserved.</p>
+    </footer>
 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
