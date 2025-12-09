@@ -1,14 +1,33 @@
-const grid = document.getElementById('workout-grid');
+// 1. Grab the search box
+const searchInput = document.getElementById('searchInput');
 
-function renderWorkouts(filter = 'all') {
+// 2. Listen for typing
+searchInput.addEventListener('keyup', (e) => {
+    const searchString = e.target.value.toLowerCase();
+
+    // 3. Filter workouts based on Title OR Desc OR Badge
+    const filteredWorkouts = workouts.filter(workout => {
+        return (
+            workout.title.toLowerCase().includes(searchString) ||
+            workout.desc.toLowerCase().includes(searchString) ||
+            workout.category.toLowerCase().includes(searchString)
+        );
+    });
+
+    // 4. Render the results (Reuse your existing function!)
+    // We need to modify renderWorkouts slightly to accept raw data
+    renderWithData(filteredWorkouts);
+});
+
+// Refactor your render function to accept data as an argument
+function renderWithData(data) {
     grid.innerHTML = "";
+    if(data.length === 0) {
+        grid.innerHTML = "<h3 class='text-center text-muted'>No workouts found!</h3>";
+        return;
+    }
     
-    // Filter the data from db.js
-    const filteredData = filter === 'all' 
-        ? workouts 
-        : workouts.filter(item => item.category === filter);
-
-    filteredData.forEach(item => {
+    data.forEach(item => {
         grid.innerHTML += `
             <div class="col-md-6 col-lg-4">
                 <div class="card h-100">
@@ -29,8 +48,5 @@ function renderWorkouts(filter = 'all') {
     });
 }
 
-window.filterData = function(category) {
-    renderWorkouts(category);
-}
-
-renderWorkouts();
+// Initial Load
+renderWithData(workouts);
